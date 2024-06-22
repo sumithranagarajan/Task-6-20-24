@@ -1,0 +1,57 @@
+<html lang="en">
+
+<body>
+    <script>
+        //Task 1 answer:
+        let obj1 = { name: "person1", age: 5 };
+        let obj2 = { age: 5, name: "person1" };
+        var flag;
+        if (obj1.length == obj2.length) {
+            for (key in obj1) {
+                if (obj1[key] == obj2[key]) {
+                    flag = true;
+                }
+                else {
+                    flag = false;
+                }
+            }
+        }
+        else {
+            flag = false;
+        }
+
+        if(flag==true){
+            console.log("Both object values are equal");
+        }
+        else{
+            console.log("Both object values are not equal");
+        }
+        
+
+        //2nd and 3rd task answer
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://restcountries.com/v2/all", true);
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                var response = JSON.parse(xhr.responseText);
+                for (let i = 0; i < response.length; i++) {
+                    console.log("Country flag is", response[i].flags);
+                    //console.log(response)  
+                    console.log("Country name is", response[i].name);
+                    console.log("Country region is", response[i].region);
+                    console.log("Country subregion is", response[i].subregion);
+                    console.log("Country population is", response[i].population);
+                }
+            }
+            else {
+                console.log("The request is failed");
+            }
+        };
+        onerror = function () {
+            console.log("Error")
+        }
+        xhr.send();
+    </script>
+</body>
+
+</html>
